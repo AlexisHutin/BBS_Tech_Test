@@ -7,8 +7,8 @@ The point of this test is to make a Laravel app that fetch some pictures from an
 
 ## Set up
 Before something else you'll need to follow [this guide](https://developers.facebook.com/docs/instagram-basic-display-api/getting-started).
-To use the Instagram API you need an app and a token.
-With this app you can fetch pictures from the tester account only, because meta don't let you fetch from other's user accounts if you don't verify your app.
+To use the Instagram API, you need an app and a token.
+With this app you can fetch pictures from the tester account only, because meta doesn't let you fetch from other's user accounts if you don't verify your app.
 
 Then, you have to put your tester user token in the .env file like that :
 ```INSTAGRAM_TOKEN='YOUR TOKEN'```
@@ -16,7 +16,7 @@ Then, you have to put your tester user token in the .env file like that :
 You can find your token here :
 ![tokenplace](resources/doc_img/token.png)
 
-Finaly you can :
+Finally you can :
 ```bash
 $ composer install
 $ php artisan key:generate
