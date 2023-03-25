@@ -16,6 +16,12 @@ Then, you have to put your tester user token in the .env file like that :
 You can find your token here :
 ![tokenplace](resources/doc_img/token.png)
 
+Finaly you can :
+```bash
+$composer install
+$php artisan key:generate
+```
+
 ## Run the tests
 To run the test simply run this command :
 ```$ php artisan test```
