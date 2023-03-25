@@ -18,8 +18,8 @@ You can find your token here :
 
 Finaly you can :
 ```bash
-$composer install
-$php artisan key:generate
+$ composer install
+$ php artisan key:generate
 ```
 
 ## Run the tests
