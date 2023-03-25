@@ -22,7 +22,7 @@ class InstagramService {
             $response = $client->get(
                 config('services.instagram.baseUrl') . 'me?fields=id,username&access_token=' . config('services.instagram.token')
             );
-
+            
             $data = $response->getBody()->getContents();
             $data = json_decode($data);
             return [
