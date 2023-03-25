@@ -42,7 +42,7 @@
                     <div class="card m-1" style="width: 18rem;">
                         <img src="{{ $picture['media_url'] }}" class="card-img-top">
                         <div class="card-body">
-                            <p class="card-text">{{ $picture['caption'] }}</p>
+                            <p class="card-text">{{ $picture['caption'] ?? ''}}</p>
                             <a 
                                 href="{{ $picture['permalink'] }}" 
                                 target="_blank"
