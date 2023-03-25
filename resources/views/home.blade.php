@@ -26,7 +26,7 @@
     </nav>
 
     <div class="container p-5">
-        @if (!empty($errors))
+        @if ($errors)
             <div class="alert alert-danger" role="alert">
                 An errors occurred. Please try again later.
             </div>

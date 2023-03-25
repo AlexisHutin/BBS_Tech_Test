@@ -7,24 +7,28 @@ use App\Services\InstagramService;
 use App\Http\Controllers\Controller;
 
 /**
- * Undocumented class
+ * Home page controller
  */
 class HomeController extends Controller
 {
     /**
-     * Undocumented function
+     * Index page controller
      *
      * @return View
      */
     public function index(): View
     {
-        $userInfo = InstagramService::getUserInfo();
-        $picturesData = InstagramService::getPicturesFromUser($userInfo['user_id'], 5);
-
+        try {
+            $userInfo = InstagramService::getUserInfo();
+            $pictures = InstagramService::getPicturesFromUser($userInfo['user_id'], 5);
+        } catch (\Exception $e) {
+            $errors = $e->getMessage();
+        }
+        
         return view('home', [
-            'userInfo' => $userInfo,
-            'pictures' => $picturesData['pictures'],
-            'errors' => $picturesData['errors']
+            'userInfo' => $userInfo ?? [],
+            'pictures' => $pictures ?? [],
+            'errors' => $errors ?? null
         ]);
     }
 }

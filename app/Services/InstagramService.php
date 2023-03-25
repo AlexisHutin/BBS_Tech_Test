@@ -5,7 +5,7 @@ namespace App\Services;
 use GuzzleHttp\Client;
 
 /**
- * Undocumented class
+ * Instagram api class
  */
 class InstagramService {
 
@@ -76,34 +76,39 @@ class InstagramService {
     public static function getPicturesFromUser(string $userId, ?int $limit = null): array
     {
         $picturesIds = self::getPicturesIdFromUser($userId);
-        
-        $client = new Client();
-
         $picturesList = [];
-        $errors = [];
         $counter = 0;
 
         foreach ($picturesIds as $pictureId) if ($limit && ($counter < $limit)) {
-            try {
-                $response = $client->get(
-                    config('services.instagram.baseUrl') . $pictureId . '?fields=caption,media_type,media_url,permalink,timestamp,username&access_token=' . config('services.instagram.token')
-                );
-    
-                $data = $response->getBody()->getContents();
-                $data = json_decode($data, true);
-    
-                $picturesList[] = $data;
-    
-            } catch (\Exception $e) {
-                $errors [] = $e->getMessage();
-            }
-
+            
+            $picturesList[] = self::getPicture($pictureId);
             $counter++;
         }
 
-        return [
-            'pictures' => $picturesList,
-            'errors' => $errors    
-        ];
+        return $picturesList;
+    }
+
+    /**
+     * Get a picture with his id
+     *
+     * @param string $pictureId
+     * @return array
+     */
+    private static function getPicture(string $pictureId): array
+    {
+        $client = new Client();
+
+        try {
+            $response = $client->get(
+                config('services.instagram.baseUrl') . $pictureId . '?fields=caption,media_type,media_url,permalink,timestamp,username&access_token=' . config('services.instagram.token')
+            );
+
+            $data = $response->getBody()->getContents();
+            $data = json_decode($data, true);
+            return $data;
+            
+        } catch (\Exception $e) {
+            throw new \Exception($e->getMessage());
+        }
     }
 }
