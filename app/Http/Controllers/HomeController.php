@@ -20,7 +20,7 @@ class HomeController extends Controller
     {
         try {
             $userInfo = InstagramService::getUserInfo();
-            $pictures = InstagramService::getPicturesFromUser($userInfo['user_id'], 5);
+            $pictures = InstagramService::getPicturesFromUser($userInfo['user_id'], 10);
         } catch (\Exception $e) {
             $errors = $e->getMessage();
         }
